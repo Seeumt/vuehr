@@ -11,4 +11,5 @@ Vue.use(ElementUI);
 new Vue({
   router,
   render: a => a(App)
-}).$mount('#app')//把这个挂载到 index.html中的 id=app的div 上去
+}).$mount('#app')
+//把这个挂载到 index.html中的 id=app的div 上去
