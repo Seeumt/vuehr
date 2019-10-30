@@ -17,8 +17,21 @@
                 </el-dropdown>
             </el-header>
             <el-container>
-                <el-aside width="200px">Aside</el-aside>
-                <el-main>Main</el-main>
+                <el-aside width="200px">
+<!--                    <el-menu @select="menuClick">-->
+                    <el-menu router>
+                        <el-submenu index="1" v-for="(item,index) in this.$router.options.routes" v-if="!item.hidden">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>{{item.name}}</span>
+                            </template>
+                                <el-menu-item :index="child.path" v-for="(child,index) in item.children">{{child.name}}</el-menu-item>
+                        </el-submenu>
+                    </el-menu>
+                </el-aside>
+                <el-main>
+                    <router-view/>
+                </el-main>
             </el-container>
         </el-container>
     </div>
@@ -30,7 +43,6 @@
         data() {
             return{
                  user:JSON.parse(window.sessionStorage.getItem('user'))
-                // user:window.sessionStorage.getItem("user")
             }
         },
         methods: {
@@ -51,7 +63,8 @@
                         });
                     });
                 }
-            }
+            },
+
         }
 
     }
@@ -69,7 +82,7 @@
 
     .homeHeader .title {
         font-size: 30px;
-        font-family: "Arial Narrow";
+        font-family: "Candara";
         color: #ffffff;
     }
     .homeHeader .userInfo{

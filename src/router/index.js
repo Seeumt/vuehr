@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from "../views/Login";
 import Home from "../views/Home";
+import Test1 from "../views/Test1";
+import Test2 from "../views/Test2";
 
 Vue.use(VueRouter)
 
@@ -9,27 +11,32 @@ const routes = [
     {
         path: '/',
         name: 'Login',
-        component: Login
+        component: Login,
+        hidden: true
     },
     {
         path: '/home',
         name: 'Home',
-        component: Home
+        component: Home,
+        hidden:true
     },
-
-    //  delete {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (about.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')//动态导入 等用的时候再导入
-    // }
+    {
+        path: '/home',
+        name: '导航1',
+        component: Home,
+        children:[
+            {
+                path: '/test1',
+                name: '选项1',
+                component: Test1
+            },
+            {
+                path: '/test2',
+                name: '选项2',
+                component: Test2
+            },
+        ]
+    }
 ]
 
 const router = new VueRouter({
