@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import ElementUI from 'element-ui'
+import store from './store'
 import 'element-ui/lib/theme-chalk/index.css'
 import {postRequest} from "./utils/api";
 import {postKeyValueRequest} from "./utils/api";
@@ -21,6 +22,7 @@ Vue.use(ElementUI);
 
 new Vue({
   router,
+  store,
   render: a => a(App)
 }).$mount('#app')
 //把这个挂载到 index.html中的 id=app的div 上去
