@@ -9,6 +9,8 @@ import {postKeyValueRequest} from "./utils/api";
 import {putRequest} from "./utils/api";
 import {getRequest} from "./utils/api";
 import {deleteRequest} from "./utils/api";
+import {initMenu} from "./utils/menus";
+import {nextDate} from "element-ui/src/utils/date-util";
 
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.postKeyValueRequest = postKeyValueRequest;
@@ -19,6 +21,15 @@ Vue.prototype.deleteRequest = deleteRequest;
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
+
+router.beforeEach((to, from, next)=>{
+  if (to.path == '/') {
+    next();
+  }else {
+    initMenu(router, store);
+    next();
+  }
+});
 
 new Vue({
   router,
