@@ -1,5 +1,7 @@
 <template>
-    
+    <div>
+        PerTrain
+    </div>
 </template>
 
 <script>

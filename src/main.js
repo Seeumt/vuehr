@@ -17,6 +17,7 @@ Vue.prototype.postKeyValueRequest = postKeyValueRequest;
 Vue.prototype.putRequest = putRequest;
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.deleteRequest = deleteRequest;
+import 'font-awesome/css/font-awesome.min.css'
 
 Vue.config.productionTip = false;
 

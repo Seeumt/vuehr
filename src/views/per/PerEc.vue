@@ -1,5 +1,7 @@
 <template>
-    
+    <div>
+        PerEc
+    </div>
 </template>
 
 <script>

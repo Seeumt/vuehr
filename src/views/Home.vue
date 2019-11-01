@@ -20,9 +20,9 @@
                 <el-aside width="200px">
 <!--                    <el-menu @select="menuClick">-->
                     <el-menu router unique-opened>
-                        <el-submenu :index="index" v-for="(item,index) in routes" v-if="!item.hidden">
+                        <el-submenu :index="index+''" v-for="(item,index) in routes" v-if="!item.hidden">
                             <template slot="title">
-                                <i class="el-icon-location"></i>
+                                <i style="color:#409eff;margin-right: 5px" :class="item.iconCls"></i>
                                 <span>{{item.name}}</span>
                             </template>
                                 <el-menu-item :index="child.path" v-for="(child,index) in item.children">{{child.name}}</el-menu-item>
@@ -30,6 +30,13 @@
                     </el-menu>
                 </el-aside>
                 <el-main>
+                    <el-breadcrumb separator="/" v-if="this.$router.currentRoute.path!='/home'">
+                        <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+                        <el-breadcrumb-item>{{this.$router.currentRoute.name}}</el-breadcrumb-item>
+                    </el-breadcrumb>
+                    <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
+                        欢迎来到PlatForm+!
+                    </div>
                     <router-view/>
                 </el-main>
             </el-container>
@@ -61,6 +68,7 @@
                         this.getRequest('/logout')
                         window.sessionStorage.removeItem("user");
                         this.$router.replace("/")
+                        this.$store.commit('initRoutes',[])
                     }).catch(() => {
                         this.$message({
                             type: 'info',
@@ -104,6 +112,13 @@
         align-items: center;
         color: white;
         font-weight: bold;
+    }
+    .homeWelcome {
+        text-align: center;
+        font-size: 30px;
+        font-family: 华文行楷;
+        color: #409eff;
+        padding-bottom: 50px;
     }
 
 </style>

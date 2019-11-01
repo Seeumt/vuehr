@@ -1,5 +1,7 @@
 <template>
-    
+    <div>
+        PerSalary
+    </div>
 </template>
 
 <script>
