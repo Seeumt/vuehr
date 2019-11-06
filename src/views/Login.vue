@@ -13,7 +13,6 @@
             <el-checkbox class="loginRemember" v-model="checked"></el-checkbox>
             <el-button type="primary" style="width: 100%" @click="submitLogin">登录</el-button>
         </el-form>
-
     </div>
 
 </template>
@@ -26,8 +25,8 @@
         data() {
             return {
                 loginForm: {
-                    username: 'admin',
-                    password: '123',
+                    username: '',
+                    password: '',
                 },
                 checked: true,
                 rules: {
@@ -43,6 +42,7 @@
                     if (valid) {
                         this.postKeyValueRequest("/doLogin", this.loginForm).then(resp => {
                             if (resp) {
+                                  // console.log(this.loginForm)
                                  // alert(JSON.stringify(resp))
                                  window.sessionStorage.setItem('user',JSON.stringify(resp.obj))
                                 console.log(JSON.stringify(resp))

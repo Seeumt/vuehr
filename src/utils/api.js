@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {Message} from "element-ui";
 
-//响应的拦截器
+//响应的拦截器(点response) 两个回调 成功 失败
 axios.interceptors.response.use(success => {
         if (success.status && success.status == 200 && success.data.status == 500) {
             Message.error({message: success.data.msg});
-            return;
+            return;//失败也就没有返回值
         }
         if (success.data.msg) {
             Message.success({message:success.data.msg})
@@ -45,7 +45,7 @@ export const postKeyValueRequest = (url, params) => {
             }
             return ret;
         }],
-        header: {
+        headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
